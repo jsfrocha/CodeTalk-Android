@@ -32,6 +32,7 @@ public class StartActivity extends Activity {
         if (id == R.id.action_logout) {
             app.getAuthClient().logout();
             Intent i = new Intent(StartActivity.this, MainActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivityForResult(i, 0);
             return true;
         }

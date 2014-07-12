@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.firebase.client.Firebase;
+
 import pt.ulht.codetalk.R;
 
 public class StartActivity extends Activity {
@@ -13,6 +16,9 @@ public class StartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        Intent i = new Intent(FirebaseBackgroundService.class.getName());
+        startService(i);
     }
 
 

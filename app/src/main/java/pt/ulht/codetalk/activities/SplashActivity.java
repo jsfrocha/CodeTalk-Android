@@ -1,18 +1,15 @@
-package pt.ulht.codetalk;
+package pt.ulht.codetalk.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.firebase.simplelogin.SimpleLoginAuthenticatedHandler;
 import com.firebase.simplelogin.User;
-import com.firebase.simplelogin.enums.*;
 
+import pt.ulht.codetalk.CodeTalk;
 import pt.ulht.codetalk.R;
 
 public class SplashActivity extends Activity {
@@ -73,6 +70,8 @@ public class SplashActivity extends Activity {
                     }
                     else {
                         Log.d(ASYNC_TAG, "User logged in");
+                        app.setCurrentUser(user);
+                        app.setCurrentUserUid(user.getUserId());
                         Intent i = new Intent(app, StartActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);

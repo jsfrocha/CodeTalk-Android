@@ -1,4 +1,4 @@
-package pt.ulht.codetalk;
+package pt.ulht.codetalk.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,40 +6,38 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.firebase.client.Firebase;
-
 import pt.ulht.codetalk.R;
 
-public class StartActivity extends Activity {
+public class GroupActivity extends Activity {
+
+    private String groupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_group);
 
-        Intent i = new Intent(FirebaseBackgroundService.class.getName());
-        startService(i);
+        Intent i = getIntent();
+        groupName = i.getStringExtra("groupName");
+
+        setTitle(groupName.split("_")[0]);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.start, menu);
+        getMenuInflater().inflate(R.menu.notes, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        CodeTalk app = (CodeTalk) getApplication();
-
-
-        if (id == R.id.action_logout) {
-            app.getAuthClient().logout();
-            Intent i = new Intent(StartActivity.this, MainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivityForResult(i, 0);
+        if (id == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);

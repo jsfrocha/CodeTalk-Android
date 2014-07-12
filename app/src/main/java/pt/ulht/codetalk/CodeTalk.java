@@ -10,10 +10,14 @@ import com.firebase.simplelogin.SimpleLoginAuthenticatedHandler;
 import com.firebase.simplelogin.User;
 import com.firebase.simplelogin.enums.Error;
 
+import pt.ulht.codetalk.activities.MainActivity;
+import pt.ulht.codetalk.activities.StartActivity;
+
 public class CodeTalk extends Application {
 
     public boolean isLoggedIn;
     private User currentUser;
+    private String currentUserUid;
     private Firebase ref = new Firebase("https://codetalking.firebaseio.com");
     private SimpleLogin authClient = new SimpleLogin(ref, this);
 
@@ -45,6 +49,14 @@ public class CodeTalk extends Application {
         return this.currentUser;
     }
 
+    public void setCurrentUserUid(String uid) {
+        this.currentUserUid = "simplelogin:"+uid;
+    }
+
+    public String getCurrentUserUid() {
+        return this.currentUserUid;
+    }
+
     public void checkUserAuth(final CodeTalk app) {
         app.authClient.checkAuthStatus(new SimpleLoginAuthenticatedHandler() {
             @Override
@@ -60,6 +72,8 @@ public class CodeTalk extends Application {
                 }
                 else {
                     Log.d(INIT_TAG, "User logged in");
+                    app.setCurrentUser(user);
+                    app.setCurrentUserUid(user.getUserId());
                     Intent i = new Intent(app, StartActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);

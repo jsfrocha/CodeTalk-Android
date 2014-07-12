@@ -1,4 +1,4 @@
-package pt.ulht.codetalk;
+package pt.ulht.codetalk.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,8 +14,10 @@ import com.firebase.client.Firebase;
 import com.firebase.simplelogin.SimpleLogin;
 import com.firebase.simplelogin.SimpleLoginAuthenticatedHandler;
 import com.firebase.simplelogin.User;
-import com.firebase.simplelogin.enums.*;
 import com.firebase.simplelogin.enums.Error;
+
+import pt.ulht.codetalk.CodeTalk;
+import pt.ulht.codetalk.R;
 
 
 public class MainActivity extends Activity {

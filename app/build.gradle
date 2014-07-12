@@ -35,6 +35,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.firebase:firebase-client:1.0.1"
-    compile "com.firebase:firebase-simple-login:1.2.0"
+    compile 'com.firebase:firebase-client:1.0.1'
+    compile 'com.firebase:firebase-simple-login:1.2.0'
 }

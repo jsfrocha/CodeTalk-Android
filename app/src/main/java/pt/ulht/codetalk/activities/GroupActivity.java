@@ -188,6 +188,10 @@ public class GroupActivity extends ListActivity {
             startActivityForResult(i, 0);
             return true;
         }
+        else if (id == R.id.action_settings) {
+            Intent i = new Intent(GroupActivity.this, FollowingActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

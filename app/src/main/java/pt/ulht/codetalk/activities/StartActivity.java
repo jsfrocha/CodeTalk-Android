@@ -95,6 +95,10 @@ public class StartActivity extends ListActivity {
             startActivityForResult(i, 0);
             return true;
         }
+        else if (id == R.id.action_settings) {
+            Intent i = new Intent(StartActivity.this, FollowingActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

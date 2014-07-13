@@ -102,6 +102,10 @@ public class NoteActivity extends Activity {
             startActivityForResult(i, 0);
             return true;
         }
+        else if (id == R.id.action_settings) {
+            Intent i = new Intent(NoteActivity.this, FollowingActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

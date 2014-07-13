@@ -42,7 +42,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 CodeTalk codeTalkApp = (CodeTalk) getApplication();
-                loginUser(codeTalkApp, etEmail.getText().toString(), etPassword.getText().toString());
+                String email;
+                String password;
+
+                email = etEmail.getText().toString();
+                password = etPassword.getText().toString();
+
+                if (!email.equalsIgnoreCase("") && !password.equalsIgnoreCase(""))
+                    loginUser(codeTalkApp, etEmail.getText().toString(), etPassword.getText().toString());
             }
         });
     }
@@ -69,6 +76,9 @@ public class MainActivity extends Activity {
                             }
                             else {
                                 Log.d(LOGIN_TAG, "User logged into firebase!");
+                                application.setCurrentUser(user);
+                                application.setCurrentUserUid(user.getUserId());
+                                application.setCurrentUserEmail(user.getEmail());
                                 Intent i = new Intent(MainActivity.this, StartActivity.class);
                                 startActivity(i);
                             }
@@ -76,6 +86,9 @@ public class MainActivity extends Activity {
                     });
                 } else {
                     Log.d(LOGIN_TAG, "User is already logged-in");
+                    application.setCurrentUser(user);
+                    application.setCurrentUserUid(user.getUserId());
+                    application.setCurrentUserEmail(user.getEmail());
                     Intent i = new Intent(MainActivity.this, StartActivity.class);
                     startActivity(i);
                 }
@@ -97,6 +110,8 @@ public class MainActivity extends Activity {
                     Log.d(REGISTER_TAG, "User successfully registered");
                     application.setUserLoggedIn(true);
                     application.setCurrentUser(user);
+                    application.setCurrentUserEmail(user.getEmail());
+                    application.setCurrentUserUid(user.getUserId());
                 }
             }
         });

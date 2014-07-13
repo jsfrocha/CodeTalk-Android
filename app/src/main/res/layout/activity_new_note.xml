@@ -1,0 +1,65 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <!-- Add Note Form -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:padding="10dip"
+            android:id="@+id/linearLayout">
+
+            <!-- Note Title Label -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lv_item_notetitle" />
+
+            <EditText
+                android:id="@+id/etNoteTitle"
+                android:inputType="text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="5dip"
+                android:singleLine="true" />
+
+            <!-- Note Content Label -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Note Content" />
+
+            <EditText
+                android:id="@+id/etNoteContent"
+                android:inputType="textMultiLine"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                                             />
+
+
+            <!-- Add Note button -->
+            <Button
+                android:id="@+id/btnNewNote"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Add Note"
+                android:background="@color/myGreen"
+                android:textColor="@color/myWhite"
+                android:onClick="loginUser"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

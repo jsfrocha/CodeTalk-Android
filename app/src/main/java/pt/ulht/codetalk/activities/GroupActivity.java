@@ -17,6 +17,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.security.acl.Group;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -120,7 +121,9 @@ public class GroupActivity extends ListActivity {
         btnAddNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(GroupActivity.this, NewNoteActivity.class);
+                i.putExtra("groupName", groupName);
+                startActivity(i);
             }
         });
 
@@ -134,6 +137,7 @@ public class GroupActivity extends ListActivity {
 
         final ListView listView = getListView();
         notesAdapter = new NotesAdapter(notesRef, this, R.layout.note_item);
+        listView.setEmptyView(findViewById(R.id.emptyNotes));
         listView.setAdapter(notesAdapter);
 
         notesAdapter.registerDataSetObserver(new DataSetObserver() {

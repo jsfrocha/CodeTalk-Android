@@ -18,6 +18,7 @@ public class CodeTalk extends Application {
     public boolean isLoggedIn;
     private User currentUser;
     private String currentUserUid;
+    private String currentUserEmail;
     private Firebase ref = new Firebase("https://codetalking.firebaseio.com");
     private SimpleLogin authClient = new SimpleLogin(ref, this);
 
@@ -57,6 +58,17 @@ public class CodeTalk extends Application {
         return this.currentUserUid;
     }
 
+    public void setCurrentUserEmail(String email) {
+        Log.d("APP", "Setting User Email: "+email);
+        this.currentUserEmail = email;
+    }
+
+    public String getCurrentUserEmail() {
+        Log.d("APP", "Getting User Email: "+this.currentUserEmail);
+        return this.currentUserEmail;
+    }
+
+
     public void checkUserAuth(final CodeTalk app) {
         app.authClient.checkAuthStatus(new SimpleLoginAuthenticatedHandler() {
             @Override
@@ -74,6 +86,7 @@ public class CodeTalk extends Application {
                     Log.d(INIT_TAG, "User logged in");
                     app.setCurrentUser(user);
                     app.setCurrentUserUid(user.getUserId());
+                    app.setCurrentUserEmail(user.getEmail());
                     Intent i = new Intent(app, StartActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);

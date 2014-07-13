@@ -72,6 +72,7 @@ public class SplashActivity extends Activity {
                         Log.d(ASYNC_TAG, "User logged in");
                         app.setCurrentUser(user);
                         app.setCurrentUserUid(user.getUserId());
+                        app.setCurrentUserEmail(user.getEmail());
                         Intent i = new Intent(app, StartActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);

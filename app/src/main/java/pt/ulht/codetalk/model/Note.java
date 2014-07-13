@@ -8,7 +8,7 @@ import java.util.Date;
 public class Note {
     private String code;
     private String content;
-    private Date createdAt;
+    private String createdAt;
     private String createdBy;
     private String title;
 
@@ -16,7 +16,7 @@ public class Note {
     private Note() { }
 
     @SuppressWarnings("unused")
-    Note(String code, String content, Date createdAt, String createdBy, String title) {
+    Note(String code, String content, String createdAt, String createdBy, String title) {
         this.code = code;
         this.content = content;
         this.createdAt = createdAt;
@@ -26,7 +26,7 @@ public class Note {
 
     public String getCode() { return code; }
     public String getContent() { return content; }
-    public Date getCreatedAt() { return createdAt; }
+    public String getCreatedAt() { return createdAt; }
     public String getCreatedBy() { return createdBy; }
     public String getTitle() { return title; }
 

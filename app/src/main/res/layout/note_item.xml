@@ -1,46 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="6dip" >
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
 
+    <!--  ListRow Left sied Thumbnail image -->
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip">
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/ic_launcher"/>
+
+    </LinearLayout>
+
+    <!-- Title Of Song-->
     <TextView
         android:id="@+id/lvItemNoteTitle"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="@string/lv_item_notetitle"
-        android:textSize="16sp" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_below="@id/lvItemNoteTitle"
-        android:gravity="center" >
-        <TextView
-            android:id="@+id/lvItemNoteCreatedBy"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lv_item_noteuser"
-            android:textSize="12sp" />
+        android:ellipsize="end"
+        android:scrollHorizontally="true"
+        android:maxLines="1"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_marginTop="10dp"
+        android:text="Rihanna Love the way lie"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/lvItemNoteCreatedAt"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lv_item_notedate"
-            android:textSize="12sp" />
-    </LinearLayout>
+    <!-- Artist Name -->
     <TextView
-        android:id="@+id/lvItemNoteGroupName"
+        android:id="@+id/lvItemNoteUser"
+        android:layout_width="250dp"
+        android:ellipsize="end"
+        android:scrollHorizontally="true"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lvItemNoteTitle"
+        android:textColor="#343434"
+        android:textSize="10dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Just gonna turn it around and its so awesome wow much great thanks for tstuff" />
+
+    <!-- Rightend Duration -->
+    <TextView
+        android:id="@+id/lvItemNoteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+
+        android:gravity="right"
+        android:text="5:45"
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"/>
+
+    <!-- Rightend Arrow -->
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_action_next_item"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/lvItemNoteContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="0sp"

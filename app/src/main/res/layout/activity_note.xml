@@ -1,0 +1,125 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="pt.ulht.codetalk.activities.NoteActivity">
+
+    <TextView
+        android:id="@+id/tvNoteTitle"
+        android:text="Note Title"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/titleBorder"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/tvNoteTitle"
+        android:layout_width="match_parent"
+        android:background="@color/myDarkerOrange"
+        android:layout_height="1px" />
+
+    <ScrollView
+        android:id="@+id/svNoteContent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/titleBorder"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/tvNoteContent"
+            android:layout_marginTop="10dp"
+            android:text="Note Content"
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/contentBorder"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/svNoteContent"
+        android:layout_width="match_parent"
+        android:background="@color/myDarkerOrange"
+        android:layout_height="1px" />
+
+    <ScrollView
+        android:id="@+id/svNoteCode"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/contentBorder"
+        android:layout_width="match_parent"
+        android:layout_height="315dp">
+
+        <TextView
+            android:id="@+id/tvNoteCode"
+            android:layout_marginTop="10dp"
+            android:text="Note Code"
+            android:textSize="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/codeBorder"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/svNoteCode"
+        android:layout_width="match_parent"
+        android:background="@color/myDarkerOrange"
+        android:layout_height="1px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/codeBorder"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvNoteUser"
+            android:layout_marginTop="5dp"
+            android:text="Note User"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:scrollHorizontally="true"
+            android:maxLines="1"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tvNoteDate"
+            android:text="Note Date"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

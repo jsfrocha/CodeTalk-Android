@@ -91,7 +91,7 @@ public class StartActivity extends ListActivity {
         if (id == R.id.action_logout) {
             app.getAuthClient().logout();
             Intent i = new Intent(StartActivity.this, MainActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivityForResult(i, 0);
             return true;
         }

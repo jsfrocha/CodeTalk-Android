@@ -4,4 +4,7 @@
     <color name="myDarkerOrange">#ff6600</color>
     <color name="myLighterOrange">#ff9900</color>
     <color name="myBlack">#333</color>
+    <color name="myGreen">#5cb85c</color>
+    <color name="infoBlue">#5bc0de</color>
+    <color name="warningYellow">#f0ad4e</color>
 </resources>

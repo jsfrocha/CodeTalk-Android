@@ -41,6 +41,8 @@ public class FollowingActivity extends ListActivity {
         CodeTalk app = (CodeTalk) getApplication();
         currentUserUid = app.getCurrentUserUid();
 
+        setTitle("Groups Followed");
+
         followingGroups = new ArrayList<String>();
 
         ref = new Firebase("https://codetalking.firebaseio.com/users/"+currentUserUid+"/following");

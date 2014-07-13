@@ -10,6 +10,8 @@ import com.firebase.simplelogin.SimpleLoginAuthenticatedHandler;
 import com.firebase.simplelogin.User;
 import com.firebase.simplelogin.enums.Error;
 
+import java.util.ArrayList;
+
 import pt.ulht.codetalk.activities.MainActivity;
 import pt.ulht.codetalk.activities.StartActivity;
 
@@ -21,10 +23,26 @@ public class CodeTalk extends Application {
     private String currentUserEmail;
     private Firebase ref = new Firebase("https://codetalking.firebaseio.com");
     private SimpleLogin authClient = new SimpleLogin(ref, this);
+    private ArrayList<String> followingGroups;
 
     private static String INIT_TAG = "INIT APP";
 
+    public ArrayList<String> getFollowingGroups() {
+        return followingGroups;
+    }
 
+    public void addFollowingGroup(String group) {
+        if (followingGroups == null) {
+            followingGroups = new ArrayList<String>();
+            followingGroups.add(group);
+        } else {
+            followingGroups.add(group);
+        }
+    }
+
+    public void removeFollowingGroup(String group) {
+        followingGroups.remove(group);
+    }
 
     public Firebase getRef() {
         return this.ref;

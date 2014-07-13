@@ -11,6 +11,7 @@ public class Note {
     private String createdAt;
     private String createdBy;
     private String title;
+    private String inGroup;
 
     @SuppressWarnings("unused")
     private Note() { }
@@ -22,6 +23,7 @@ public class Note {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.title = title;
+        this.inGroup = inGroup;
     }
 
     public String getCode() { return code; }
@@ -29,6 +31,7 @@ public class Note {
     public String getCreatedAt() { return createdAt; }
     public String getCreatedBy() { return createdBy; }
     public String getTitle() { return title; }
+    public String getInGroup() { return inGroup; }
 
 }
 /*

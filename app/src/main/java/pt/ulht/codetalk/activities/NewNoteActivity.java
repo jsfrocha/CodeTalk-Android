@@ -73,7 +73,7 @@ public class NewNoteActivity extends Activity {
                     //Add to Groups/Notes
                     Firebase listRef = groupNotesListRef.push();
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("EEE, MM LLL yyyy kk:mm:ss zzz"); /*Sun, 13 Jul 2014 02:13:05 GMT*/
+                    SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd LLL yyyy kk:mm:ss zzz"); /*Sun, 13 Jul 2014 02:13:05 GMT*/
                     String currentDate = sdf.format(Calendar.getInstance().getTime());
 
                     Map<String, String> newNote = new HashMap<String, String>();
@@ -83,6 +83,7 @@ public class NewNoteActivity extends Activity {
                     newNote.put("createdAt", currentDate);
                     newNote.put("createdBy", currentUserEmail);
                     newNote.put("title", title);
+                    newNote.put("inGroup", groupName);
 
                     listRef.setValue(newNote);
 

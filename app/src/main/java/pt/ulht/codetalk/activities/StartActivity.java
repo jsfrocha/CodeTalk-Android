@@ -1,17 +1,27 @@
 package pt.ulht.codetalk.activities;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.firebase.simplelogin.User;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import pt.ulht.codetalk.CodeTalk;
 import pt.ulht.codetalk.R;
@@ -24,6 +34,9 @@ public class StartActivity extends ListActivity {
     private CodeTalk app;
     private GroupsAdapter groupsAdapter;
     private Firebase ref;
+    private Firebase followRef;
+    private SharedPreferences mShared;
+    private Set<String> followedGroups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +45,37 @@ public class StartActivity extends ListActivity {
 
         app = (CodeTalk) getApplication();
         User user = app.getCurrentUser();
-
+        mShared = getSharedPreferences("pt.ulht.codetalk", Context.MODE_PRIVATE);
         ref = new Firebase("https://codetalking.firebaseio.com/users/"+app.getCurrentUserUid()+"/allowedGroups");
 
-        //Start notifications service
-        Intent i = new Intent(FirebaseBackgroundService.class.getName());
-        i.putExtra("currentUserUid", app.getCurrentUserUid());
-        startService(i);
+        followRef = new Firebase("https://codetalking.firebaseio.com/users/"+app.getCurrentUserUid()+"/following");
+        followRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                SharedPreferences.Editor editor = mShared.edit();
+                followedGroups = new HashSet<String>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    followedGroups.add(child.getName());
+                    Log.d(START_TAG, "Following Group: "+child.getName());
+                }
+                editor.putStringSet("followedGroups", followedGroups);
+                editor.commit();
+
+                Log.d(START_TAG, "Starting Service");
+                //Start notifications service
+                Intent i = new Intent(FirebaseBackgroundService.class.getName());
+                startService(i);
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+//        //Start notifications service
+//        Intent i = new Intent(FirebaseBackgroundService.class.getName());
+//        i.putExtra("currentUserUid", app.getCurrentUserUid());
+//        startService(i);
     }
 
     @Override

@@ -1,7 +1,10 @@
 package pt.ulht.codetalk.activities;
 
 import android.app.ListActivity;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +22,14 @@ import com.firebase.client.ValueEventListener;
 
 import java.security.acl.Group;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import pt.ulht.codetalk.CodeTalk;
 import pt.ulht.codetalk.R;
 import pt.ulht.codetalk.adapters.NotesAdapter;
+import pt.ulht.codetalk.services.FirebaseBackgroundService;
 
 public class GroupActivity extends ListActivity {
 
@@ -40,6 +46,9 @@ public class GroupActivity extends ListActivity {
     private Firebase followingRef;
     private Firebase followRef;
 
+    private SharedPreferences mShared;
+    private Set<String> followedGroups;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +58,7 @@ public class GroupActivity extends ListActivity {
 
         Intent i = getIntent();
         groupName = i.getStringExtra("groupName");
+        Log.d("GroupAct", groupName);
         setTitle(groupName.split("_")[0]);
 
         currentUserUid = app.getCurrentUserUid();
@@ -90,10 +100,13 @@ public class GroupActivity extends ListActivity {
                 btnUnfollow.setVisibility(View.VISIBLE);
 
                 Map<String, Boolean> toSet = new HashMap<String, Boolean>();
-
                 toSet.put("isFollowing", true);
-
                 followRef.setValue(toSet);
+
+                addGroupToFollowed(groupName);
+                Intent i = new Intent(FirebaseBackgroundService.class.getName());
+                stopService(i);
+                startService(i);
 
             }
         });
@@ -110,8 +123,18 @@ public class GroupActivity extends ListActivity {
                     public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                         if (firebaseError != null) {
                             Log.d("Removing", "Removal Complete");
+
+                            removeGroupFromFollowed(groupName);
+                            Intent i = new Intent(FirebaseBackgroundService.class.getName());
+                            stopService(i);
+                            startService(i);
                         } else {
                             Log.d("Removing", "Removal Error: "+firebaseError);
+
+                            removeGroupFromFollowed(groupName);
+                            Intent i = new Intent(FirebaseBackgroundService.class.getName());
+                            stopService(i);
+                            startService(i);
                         }
                     }
                 });
@@ -127,8 +150,33 @@ public class GroupActivity extends ListActivity {
             }
         });
 
+    }
 
+    public void addGroupToFollowed (String groupName) {
 
+        mShared = getSharedPreferences("pt.ulht.codetalk", Context.MODE_PRIVATE);
+        followedGroups = mShared.getStringSet("followedGroups", null);
+
+        followedGroups.add(groupName);
+
+        SharedPreferences.Editor editor = mShared.edit();
+
+        editor.putStringSet("followedGroups", followedGroups);
+        editor.commit();
+
+    }
+
+    public void removeGroupFromFollowed (String groupName) {
+
+        mShared = getSharedPreferences("pt.ulht.codetalk", Context.MODE_PRIVATE);
+        followedGroups = mShared.getStringSet("followedGroups", null);
+
+        followedGroups.remove(groupName);
+
+        SharedPreferences.Editor editor = mShared.edit();
+
+        editor.putStringSet("followedGroups", followedGroups);
+        editor.commit();
     }
 
     @Override

@@ -37,7 +37,7 @@
             android:exported="false"
             android:process=":remote" >
             <intent-filter>
-                <action android:name="pt.ulht.codetalk.FirebaseBackgroundService" />
+                <action android:name="pt.ulht.codetalk.services.FirebaseBackgroundService" />
             </intent-filter>
         </service>
 
